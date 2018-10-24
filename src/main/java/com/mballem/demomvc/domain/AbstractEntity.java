@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mballem.demomvc.domain.jsonviews.GenericViews;
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 	
+	@JsonView(GenericViews.LazyView.class)
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private ID id;
 

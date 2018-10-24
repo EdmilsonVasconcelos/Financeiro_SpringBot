@@ -17,26 +17,26 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Transactional(readOnly = false)
 	@Override
-	public void salvar(Departamento departamento) {
-		dao.save(departamento);
+	public Departamento salvar(Departamento departamento) {
+		return dao.save(departamento);
 	}
 
 	@Transactional(readOnly = false)
 	@Override
 	public void editar(Departamento departamento) {
-		dao.update(departamento);
+		dao.save(departamento);
 	}
 	
 	@Transactional(readOnly = false)
 	@Override
 	public void excluir(Long id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public Departamento buscarPorId(Long id) {
-		return dao.findById(id);
+		return dao.findById(id).orElseGet(null);
 	}
 
 	@Transactional(readOnly = true)
@@ -47,10 +47,8 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 	@Override
 	public boolean departamentoTemCargos(Long id) {
-		if(buscarPorId(id).getCargos().isEmpty()) {
-			return false;
-		}
-		return true;
+		Departamento departamento = buscarPorId(id);
+		return !(departamento != null && departamento.getCargos().isEmpty());
 	}
 
 }

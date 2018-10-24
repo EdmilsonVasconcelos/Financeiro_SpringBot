@@ -6,7 +6,7 @@ import com.mballem.demomvc.domain.Departamento;
 
 public interface DepartamentoService {
 	
-	void salvar(Departamento departamento);
+	Departamento salvar(Departamento departamento);
 	
 	void editar(Departamento departamento);
 	
