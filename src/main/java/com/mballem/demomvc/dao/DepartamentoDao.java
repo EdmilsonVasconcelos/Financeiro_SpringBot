@@ -2,18 +2,13 @@ package com.mballem.demomvc.dao;
 
 import java.util.List;
 
+import org.springframework.data.repository.CrudRepository;
+
 import com.mballem.demomvc.domain.Departamento;
 
-public interface DepartamentoDao {
-	
-	void save(Departamento departamento);
-	
-	void update(Departamento departamento);
-	
-	void delete(Long id);
-	
-	Departamento findById(Long id);
+
+public interface DepartamentoDao extends CrudRepository<Departamento, Long>{
 	
 	List<Departamento> findAll();
-
+	
 }
